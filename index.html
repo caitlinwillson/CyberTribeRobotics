@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Tribe 4020 - Tennessee's #1 Robotics Team</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Work+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --maroon: #800000;
+            --maroon-light: #a61c1c;
+            --gray: #4a5568;
+            --gray-light: #6b7280;
+            --black: #1a1a1a;
+            --white: #ffffff;
+            --bg-light: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            color: var(--black);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* NAVIGATION */
+        .nav {
+            background: var(--black);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 24px;
+            color: var(--white);
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .nav-logo span {
+            color: var(--maroon-light);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--maroon-light);
+        }
+
+        .nav-cta {
+            background: var(--maroon);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            background: var(--maroon-light);
+            transform: translateY(-2px);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(135deg, var(--black) 0%, var(--maroon) 100%);
+            color: var(--white);
+            padding: 100px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(128, 0, 0, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 6s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.5; }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 64px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            animation: slideDown 1s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            animation: fadeIn 1.5s ease-out 0.3s backwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+            animation: fadeIn 1.5s ease-out 0.6s backwards;
+        }
+
+        .hero-stat {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-stat .number {
+            font-family: 'Oswald', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .hero-stat .label {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* CAMPAIGN PROGRESS */
+        .campaign-progress {
+            background: var(--white);
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .campaign-progress h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 42px;
+            color: var(--black);
+            margin-bottom: 20px;
+        }
+
+        .progress-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .progress-numbers {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .current-amount {
+            color: var(--maroon);
+            font-size: 32px;
+        }
+
+        .goal-amount {
+            color: var(--gray);
+        }
+
+        .progress-bar-outer {
+            background: #e5e7eb;
+            height: 50px;
+            border-radius: 25px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-bar-inner {
+            background: linear-gradient(90deg, var(--maroon) 0%, var(--maroon-light) 100%);
+            height: 100%;
+            width: 0%;
+            transition: width 2s ease-out;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 20px;
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .campaign-cta {
+            margin-top: 30px;
+        }
+
+        .btn-primary {
+            background: var(--maroon);
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(128, 0, 0, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--maroon-light);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(128, 0, 0, 0.4);
+        }
+
+        /* IMPACT SECTION */
+        .impact {
+            background: var(--bg-light);
+            padding: 80px 40px;
+        }
+
+        .impact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 48px;
+            color: var(--black);
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            font-size: 20px;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .impact-card {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .impact-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .impact-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .impact-card h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 24px;
+            color: var(--maroon);
+            margin-bottom: 15px;
+        }
+
+        .impact-card p {
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        /* TESTIMONIALS */
+        .testimonials {
+            background: white;
+            padding: 80px 40px;
+        }
+
+        .testimonial-slider {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .testimonial {
+            background: var(--bg-light);
+            padding: 50px;
+            border-radius: 16px;
+            border-left: 6px solid var(--maroon);
+            margin-bottom: 30px;
+        }
+
+        .testimonial-quote {
+            font-size: 20px;
+            font-style: italic;
+            color: var(--black);
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-info h4 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 18px;
+            color: var(--maroon);
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        /* SPONSORS */
+        .sponsors {
+            background: var(--bg-light);
+            padding: 80px 40px;
+        }
+
+        .sponsors-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .sponsor-tier {
+            margin-bottom: 50px;
+        }
+
+        .tier-header {
+            font-family: 'Oswald', sans-serif;
+            font-size: 32px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid;
+            display: inline-block;
+        }
+
+        .tier-platinum { color: #c0c0c0; border-color: #c0c0c0; }
+        .tier-black { color: var(--black); border-color: var(--black); }
+        .tier-gray { color: var(--gray); border-color: var(--gray); }
+        .tier-maroon { color: var(--maroon); border-color: var(--maroon); }
+
+        .sponsor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .sponsor-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .sponsor-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .sponsor-name {
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--black);
+        }
+
+        /* HOW TO SUPPORT */
+        .support {
+            background: linear-gradient(135deg, var(--black) 0%, var(--maroon) 100%);
+            color: white;
+            padding: 80px 40px;
+            text-align: center;
+        }
+
+        .support-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .support h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 48px;
+            margin-bottom: 50px;
+        }
+
+        .support-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .support-option {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .support-option:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .support-option .icon {
+            font-size: 56px;
+            margin-bottom: 20px;
+        }
+
+        .support-option h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .support-option p {
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        .contact-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 16px;
+            margin-top: 50px;
+        }
+
+        .contact-info h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .contact-info strong {
+            color: var(--maroon-light);
+        }
+
+        /* FOOTER */
+        .footer {
+            background: var(--black);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--maroon-light);
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .social-icon {
+            font-size: 32px;
+            color: white;
+            transition: color 0.3s ease;
+        }
+
+        .social-icon:hover {
+            color: var(--maroon-light);
+        }
+
+        .footer-copyright {
+            margin-top: 30px;
+            opacity: 0.7;
+            font-size: 14px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .hero-subtitle {
+                font-size: 18px;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header h2 {
+                font-size: 36px;
+            }
+
+            .impact-grid,
+            .support-options {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        /* ANIMATIONS */
+        @keyframes slideInUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .animate-in {
+            animation: slideInUp 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav class="nav">
+        <div class="nav-logo">CYBER TRIBE <span>4020</span></div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#impact">Impact</a>
+            <a href="#sponsors">Sponsors</a>
+            <a href="#support">Support Us</a>
+            <a href="dashboard.html" class="nav-cta">Team Dashboard →</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>CYBER TRIBE 4020</h1>
+            <p class="hero-subtitle">Tennessee's #1 Robotics Team | Top 2% Globally</p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="number">#1</div>
+                    <div class="label">In Tennessee</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="number">#51</div>
+                    <div class="label">Out of 2,930 Teams in USA</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="number">#68</div>
+                    <div class="label">Out of 3,720 Teams Globally</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="number">13</div>
+                    <div class="label">Years of Excellence Since 2012</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CAMPAIGN PROGRESS -->
+    <section class="campaign-progress" id="about">
+        <h2>2025-2026 Season Campaign</h2>
+        <div class="progress-wrapper">
+            <div class="progress-numbers">
+                <span class="current-amount" id="current-raised">$0</span>
+                <span class="goal-amount">of $50,000 goal</span>
+            </div>
+            <div class="progress-bar-outer">
+                <div class="progress-bar-inner" id="progress-bar">0%</div>
+            </div>
+            <p style="color: var(--gray); font-size: 18px; margin-bottom: 20px;">
+                Help us compete at championship level. Every dollar funds student learning, robot construction, and competition travel.
+            </p>
+            <div class="campaign-cta">
+                <a href="#support" class="btn-primary">Support Our Team →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMPACT SECTION -->
+    <section class="impact" id="impact">
+        <div class="impact-container">
+            <div class="section-header">
+                <h2>Our Impact Since 2012</h2>
+                <p>13 years of launching students into STEM careers and changing lives through robotics</p>
+            </div>
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <div class="impact-icon">🎓</div>
+                    <h3>300+ Students Launched</h3>
+                    <p>Over 300 students have gone through our program, learning engineering, programming, teamwork, and leadership. Our alumni attend top universities like MIT, Georgia Tech, and Virginia Tech.</p>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-icon">🏆</div>
+                    <h3>6 World Championships</h3>
+                    <p>Competed at the FIRST Robotics World Championships 6 consecutive years, representing Tennessee against the best teams globally.</p>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-icon">👩‍💻</div>
+                    <h3>Breaking Barriers</h3>
+                    <p>Over 50% of our team members are young women, proving that robotics and STEM are for everyone. We're actively changing the face of engineering.</p>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-icon">💼</div>
+                    <h3>Career Pipeline</h3>
+                    <p>Our alumni work at leading companies in aerospace, software, manufacturing, and defense. Many have started their own businesses and pursued advanced degrees.</p>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-icon">🤝</div>
+                    <h3>Community Leaders</h3>
+                    <p>Students learn more than robotics—they develop leadership, communication, project management, and problem-solving skills that last a lifetime.</p>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-icon">🎯</div>
+                    <h3>Championship Excellence</h3>
+                    <p>Ranked #1 in Tennessee for 3 consecutive years and consistently in the top 2% of all teams globally. We compete at the highest level.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials">
+        <div class="testimonial-slider">
+            <div class="section-header">
+                <h2>What People Say</h2>
+                <p>Hear from students, alumni, and supporters about the impact of Cyber Tribe 4020</p>
+            </div>
+            
+            <div class="testimonial">
+                <p class="testimonial-quote">"[Add your first student testimonial here - talk about how robotics changed their life, gave them confidence, or opened doors to STEM careers. Keep it authentic and 2-3 sentences.]"</p>
+                <div class="testimonial-author">
+                    <div class="author-info">
+                        <h4>[Student Name]</h4>
+                        <p>Team Member, Class of 20XX</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial">
+                <p class="testimonial-quote">"[Add your second testimonial here - maybe from an alumni who's now in college or working in tech. Show the long-term impact of the program.]"</p>
+                <div class="testimonial-author">
+                    <div class="author-info">
+                        <h4>[Alumni Name]</h4>
+                        <p>Alumni, Now at [University/Company]</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial">
+                <p class="testimonial-quote">"[Add a sponsor or parent testimonial here - about why they support the team and what they've seen students accomplish.]"</p>
+                <div class="testimonial-author">
+                    <div class="author-info">
+                        <h4>[Sponsor/Parent Name]</h4>
+                        <p>Sponsor / Parent</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPONSORS -->
+    <section class="sponsors" id="sponsors">
+        <div class="sponsors-container">
+            <div class="section-header">
+                <h2>Thank You to Our Champions</h2>
+                <p>These incredible organizations and individuals make our success possible</p>
+            </div>
+
+            <div class="sponsor-tier">
+                <h3 class="tier-header tier-platinum">Platinum Tier ($5,000+)</h3>
+                <div class="sponsor-grid">
+                    <div class="sponsor-card">
+                        <div class="sponsor-name">Marsh Living Trust</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sponsor-tier">
+                <h3 class="tier-header tier-black">Black Tier ($3,000+)</h3>
+                <div class="sponsor-grid">
+                    <div class="sponsor-card">
+                        <div class="sponsor-name">The East Tennessee Chapter of the Tennessee Society of Professional Engineers</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sponsor-tier">
+                <h3 class="tier-header tier-gray">Gray Tier ($1,000+)</h3>
+                <div class="sponsor-grid">
+                    <div class="sponsor-card">
+                        <div class="sponsor-name">Kiwanis Club of Kingsport</div>
+                    </div>
+                    <div class="sponsor-card">
+                        <div class="sponsor-name">Alpha Metallurgical Resources</div>
+                    </div>
+                    <div class="sponsor-card">
+                        <div class="sponsor-name">The Regional Eye Center</div>
+                    </div>
+                    <div class="sponsor-card">
+                        <div class="sponsor-name">Northeast State Community College</div>
+                    </div>
+                    <div class="sponsor-card">
+                        <div class="sponsor-name">Cardinal Glass Industries</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sponsor-tier">
+                <h3 class="tier-header tier-maroon">Maroon Tier ($500 - $999)</h3>
+                <p style="font-style: italic; color: var(--gray); margin-top: 15px;">
+                    Plus many generous individual and business supporters who keep our team moving forward.
+                </p>
+            </div>
+
+            <p style="text-align: center; margin-top: 50px; font-size: 22px; font-weight: 600; color: var(--black);">
+                Join these incredible organizations in supporting Tennessee's top robotics team.
+            </p>
+        </div>
+    </section>
+
+    <!-- HOW TO SUPPORT -->
+    <section class="support" id="support">
+        <div class="support-container">
+            <h2>How You Can Support Us</h2>
+            
+            <div class="support-options">
+                <div class="support-option">
+                    <div class="icon">💰</div>
+                    <h3>Monetary Donation</h3>
+                    <p>Unrestricted funds for greatest need, sponsor a specific student, or fund equipment and travel. All contributions are tax-deductible.</p>
+                </div>
+
+                <div class="support-option">
+                    <div class="icon">🔧</div>
+                    <h3>In-Kind Donations</h3>
+                    <p>Tools, electronics, raw materials, office supplies, or equipment donations help us build championship robots.</p>
+                </div>
+
+                <div class="support-option">
+                    <div class="icon">🤝</div>
+                    <h3>Partnership</h3>
+                    <p>Mentorship opportunities, facility access, professional services, or long-term sponsorship relationships.</p>
+                </div>
+            </div>
+
+            <div class="contact-info">
+                <h3>Ready to Support Cyber Tribe 4020?</h3>
+                <p><strong>Mail Checks To:</strong></p>
+                <p>Cyber Tribe 4020</p>
+                <p>[INSERT MAILING ADDRESS]</p>
+                <p style="margin-top: 25px;"><strong>Questions or Want to Learn More?</strong></p>
+                <p>Email: <strong>[INSERT EMAIL]</strong></p>
+                <p>Phone: <strong>[INSERT PHONE]</strong></p>
+                <p style="margin-top: 25px; font-size: 16px; opacity: 0.9;">
+                    We'd love to schedule a call, arrange a facility visit, or invite you to one of our competitions!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#impact">Impact</a>
+                <a href="#sponsors">Sponsors</a>
+                <a href="#support">Support</a>
+                <a href="dashboard.html">Team Dashboard</a>
+                <a href="cyber-tribe-donor-brochure.html">Donor Brochure</a>
+            </div>
+            
+            <div class="footer-social">
+                <a href="#" class="social-icon">📘</a>
+                <a href="#" class="social-icon">📷</a>
+                <a href="#" class="social-icon">🐦</a>
+                <a href="#" class="social-icon">📹</a>
+            </div>
+
+            <div class="footer-copyright">
+                <p><strong>Cyber Tribe 4020</strong> | FIRST Robotics Competition Team</p>
+                <p>Tennessee's Top Robotics Team | Top 2% Globally</p>
+                <p style="margin-top: 20px; font-size: 13px;">© 2024-2025 Cyber Tribe 4020 | All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animate progress bar on load
+        window.addEventListener('load', () => {
+            // Update these values to match your actual fundraising progress
+            const currentAmount = 0; // Update this with actual amount raised
+            const goalAmount = 50000;
+            const percentage = (currentAmount / goalAmount) * 100;
+
+            // Animate progress bar
+            setTimeout(() => {
+                const progressBar = document.getElementById('progress-bar');
+                progressBar.style.width = `${percentage}%`;
+                progressBar.textContent = `${Math.round(percentage)}%`;
+            }, 500);
+
+            // Update current amount display
+            const currentRaisedElement = document.getElementById('current-raised');
+            animateNumber(currentRaisedElement, 0, currentAmount, 2000);
+        });
+
+        // Animate number counting up
+        function animateNumber(element, start, end, duration) {
+            const startTime = performance.now();
+            
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                const current = Math.floor(start + (end - start) * progress);
+                element.textContent = `$${current.toLocaleString()}`;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+            
+            requestAnimationFrame(update);
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation class when elements come into view
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all impact cards
+        document.querySelectorAll('.impact-card, .testimonial, .sponsor-tier').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
